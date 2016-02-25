@@ -1,0 +1,46 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+
+sourceCompatibility = 1.5
+version = '1.0'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+                   'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile 'javax.enterprise:cdi-api:1.2'
+	compile 'mysql:mysql-connector-java:5.1.38'  
+	compile 'commons-dbcp:commons-dbcp:1.4'	  
+
+    compile group: 'com.sun.jersey', name: 'jersey-server', version:'1.8'
+    compile group: 'org.springframework', name: 'spring-core', version:'3.0.5.RELEASE'
+	compile (group: 'org.springframework', name: 'spring-context', version: '3.2.16.RELEASE')    {
+		exclude module: 'spring-asm'
+	}
+    compile (group: 'org.springframework', name: 'spring-aop', version: '3.2.16.RELEASE')
+    {
+		exclude(module: 'spring-asm')
+	}
+    compile group: 'org.springframework', name: 'spring-web', version:'3.0.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-tx', version:'3.2.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-orm', version:'3.2.5.RELEASE'
+    compile group: 'org.hibernate', name: 'hibernate-core', version:'4.1.9.Final'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version:'4.1.9.Final'
+    compile(group: 'com.sun.jersey.contribs', name: 'jersey-spring', version:'1.8') {
+		exclude(module: 'spring')
+		exclude(module: 'spring-core')
+		exclude(module: 'spring-web')
+		exclude(module: 'spring-beans')
+		exclude(module: 'spring-context')
+	}
+}
+
+
